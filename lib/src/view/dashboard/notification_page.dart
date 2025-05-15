@@ -31,7 +31,6 @@ class NotificationPage extends StatelessWidget {
         ),
         body: CustomFrontContainer(
           height: AppSizer().deviceHeight100,
-          width: AppSizer().deviceWidth100,
           child: Padding(
             padding: EdgeInsets.all(AppSizer().deviceHeight1),
             child: Column(

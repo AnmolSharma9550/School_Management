@@ -39,86 +39,92 @@ class AskdoubtPage extends StatelessWidget {
         iconTheme: IconThemeData(color: AppColors.appWhite),
       ),
       body: CustomFrontContainer(
-        width: AppSizer().deviceHeight100,
+        // width: AppSizer().deviceWidth100,
+        height: AppSizer().deviceHeight100,
         child: Padding(
           padding: EdgeInsets.all(AppSizer().deviceHeight3),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Select Teacher',
-                  style: TextStyle(
-                    color: AppColors.appBackgroundColor,
-                  )),
-              Obx(
-                () => Theme(
-                  data: Theme.of(context).copyWith(
-                    canvasColor: AppColors.appBackgroundColor,
+          child: SingleChildScrollView(
+            child: Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Select Teacher',
+                      style: TextStyle(
+                        color: AppColors.appBackgroundColor,
+                      )),
+                  Obx(
+                    () => Theme(
+                      data: Theme.of(context).copyWith(
+                        canvasColor: AppColors.appBackgroundColor,
+                      ),
+                      child: DropdownButtonFormField(
+                          decoration: InputDecoration(),
+                          value: controller.selectedTeacher?.value == ''
+                              ? null
+                              : controller.selectedTeacher?.value,
+                          hint: Text('Choose a teacher'),
+                          items: teacherList
+                              .map((teacher) => DropdownMenuItem(
+                                    child: Text(teacher),
+                                    value: teacher,
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            controller.setSelectedTeacher(value);
+                          }),
+                    ),
                   ),
-                  child: DropdownButtonFormField(
-                      decoration: InputDecoration(),
-                      value: controller.selectedTeacher?.value == ''
-                          ? null
-                          : controller.selectedTeacher?.value,
-                      hint: Text('Choose a teacher'),
-                      items: teacherList
-                          .map((teacher) => DropdownMenuItem(
-                                child: Text(teacher),
-                                value: teacher,
-                              ))
-                          .toList(),
-                      onChanged: (value) {
-                        controller.setSelectedTeacher(value);
-                      }),
-                ),
-              ),
-              SizedBox(
-                height: AppSizer().deviceHeight3,
-              ),
-              Text(
-                'Select Subject',
-                style: TextStyle(color: AppColors.appBackgroundColor),
-              ),
-              Obx(
-                () => Theme(
-                  data: Theme.of(context).copyWith(
-                    canvasColor: AppColors.appBackgroundColor,
+                  SizedBox(
+                    height: AppSizer().deviceHeight3,
                   ),
-                  child: DropdownButtonFormField(
-                      value: controller.selectedSubject?.value == ''
-                          ? null
-                          : controller.selectedSubject?.value,
-                      hint: Text('Choose a Subject'),
-                      items: subjectList
-                          .map((subject) => DropdownMenuItem(
-                                child: Text(subject),
-                                value: subject,
-                              ))
-                          .toList(),
-                      onChanged: (value) {
-                        controller.setSelectedSubject(value);
-                      }),
-                ),
+                  Text(
+                    'Select Subject',
+                    style: TextStyle(color: AppColors.appBackgroundColor),
+                  ),
+                  Obx(
+                    () => Theme(
+                      data: Theme.of(context).copyWith(
+                        canvasColor: AppColors.appBackgroundColor,
+                      ),
+                      child: DropdownButtonFormField(
+                          value: controller.selectedSubject?.value == ''
+                              ? null
+                              : controller.selectedSubject?.value,
+                          hint: Text('Choose a Subject'),
+                          items: subjectList
+                              .map((subject) => DropdownMenuItem(
+                                    child: Text(subject),
+                                    value: subject,
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            controller.setSelectedSubject(value);
+                          }),
+                    ),
+                  ),
+                  SizedBox(
+                    height: AppSizer().deviceHeight3,
+                  ),
+                  Text('Title',
+                      style: TextStyle(color: AppColors.appBackgroundColor)),
+                  TextField(),
+                  SizedBox(
+                    height: AppSizer().deviceHeight3,
+                  ),
+                  Text('Doubt Description',
+                      style: TextStyle(color: AppColors.appBackgroundColor)),
+                  TextField(),
+                  SizedBox(
+                    height: AppSizer().deviceHeight8,
+                  ),
+                  CustomButton(
+                      text: 'SEND',
+                      onPressed: () {},
+                      gradient:
+                          LinearGradient(colors: AppColors.gradientColor)),
+                ],
               ),
-              SizedBox(
-                height: AppSizer().deviceHeight3,
-              ),
-              Text('Title',
-                  style: TextStyle(color: AppColors.appBackgroundColor)),
-              TextField(),
-              SizedBox(
-                height: AppSizer().deviceHeight3,
-              ),
-              Text('Doubt Description',
-                  style: TextStyle(color: AppColors.appBackgroundColor)),
-              TextField(),
-              SizedBox(
-                height: AppSizer().deviceHeight8,
-              ),
-              CustomButton(
-                  text: 'SEND',
-                  onPressed: () {},
-                  gradient: LinearGradient(colors: AppColors.gradientColor)),
-            ],
+            ),
           ),
         ),
       ),

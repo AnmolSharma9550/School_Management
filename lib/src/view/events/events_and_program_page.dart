@@ -13,19 +13,37 @@ class EventsAndProgramPage extends StatelessWidget {
         "event": 'Sleepover Night',
         "time": '06 Jan 21, 09:00 AM',
         "desc":
-            'A sleepover is a great treat for kids.\nMany schools use such an event as \nthe culminating activity of the \nschool year. '
+            'A sleepover is a great treat for kids.Many schools use such an event as the culminating activity of the school year. '
       },
       {
         "event": 'Fishing Tournament',
         "time": '12 Jan 21, 09:00 AM',
         "desc":
-            'Silver Sands Middle School in Port \nOrange,Florida, offers many special \nevents,but one of the most \nunique ones is a springtime...'
+            'Silver Sands Middle School in Port Orange,Florida, offers many special events,but one of the most unique ones is a springtime...'
       },
       {
         "event": 'Rhyme Time: A Night of Poetry',
         "time": '24 Jan 21, 09:00 AM',
         "desc":
-            'April is also National Poetry Month. \nNow there is a great theme for a \nfun family night!\nCombine poetry readings by students...'
+            'April is also National Poetry Month. Now there is a great theme for a fun family night!Combine poetry readings by students...'
+      },
+      {
+        "event": 'Rhyme Time: A Night of Poetry',
+        "time": '24 Jan 21, 09:00 AM',
+        "desc":
+            'April is also National Poetry Month. Now there is a great theme for a fun family night!Combine poetry readings by students...'
+      },
+      {
+        "event": 'Rhyme Time: A Night of Poetry',
+        "time": '24 Jan 21, 09:00 AM',
+        "desc":
+            'April is also National Poetry Month. Now there is a great theme for a fun family night!Combine poetry readings by students...'
+      },
+      {
+        "event": 'Rhyme Time: A Night of Poetry',
+        "time": '24 Jan 21, 09:00 AM',
+        "desc":
+            'April is also National Poetry Month. Now there is a great theme for a fun family night!Combine poetry readings by students...'
       }
     ];
 
@@ -48,9 +66,8 @@ class EventsAndProgramPage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final event = events[index];
                     return Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: EdgeInsets.all(AppSizer().deviceHeight2),
                       child: Container(
-                        height: AppSizer().deviceHeight16,
                         decoration: BoxDecoration(
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(13),
@@ -61,11 +78,15 @@ class EventsAndProgramPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text(
-                                event['event'] ?? '',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: AppSizer().deviceSp15),
+                              Padding(
+                                padding:
+                                    EdgeInsets.all(AppSizer().deviceHeight1),
+                                child: Text(
+                                  event['event'] ?? '',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: AppSizer().deviceSp15),
+                                ),
                               ),
                               Flex(
                                 direction: Axis.horizontal,
@@ -79,23 +100,34 @@ class EventsAndProgramPage extends StatelessWidget {
                                       color: AppColors.lightBlue,
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: AppSizer().deviceHeight1),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          event['time'] ?? '',
-                                          style: TextStyle(
-                                              color: AppColors.appPrimaryColor,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        Text(event['desc'] ?? ''),
-                                      ],
+                                  SizedBox(
+                                    width: AppSizer().deviceWidth1,
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(
+                                          AppSizer().deviceHeight1),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            event['time'] ?? '',
+                                            style: TextStyle(
+                                                color:
+                                                    AppColors.appPrimaryColor,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          Text(
+                                            event['desc'] ?? '',
+                                            softWrap: true,
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 3,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   )
                                 ],

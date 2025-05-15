@@ -25,12 +25,11 @@ class FeeDuePage extends StatelessWidget {
             children: [
               Expanded(
                 child: ListView.builder(
-                    itemCount: 2,
+                    itemCount: 10,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.all(AppSizer().deviceHeight1),
                         child: Container(
-                          height: AppSizer().deviceHeight22,
                           decoration: BoxDecoration(
                               border: Border.all(),
                               borderRadius:

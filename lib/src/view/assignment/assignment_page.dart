@@ -31,20 +31,18 @@ class AssignmentPage extends StatelessWidget {
                       return Padding(
                         padding: EdgeInsets.all(AppSizer().deviceHeight2),
                         child: Container(
-                            height: AppSizer().deviceHeight22,
                             decoration: BoxDecoration(
                                 border: Border.all(),
                                 borderRadius: BorderRadius.circular(
                                     AppSizer().deviceSp16)),
                             child: Padding(
-                              padding: EdgeInsets.all(AppSizer().deviceHeight1),
+                              padding: EdgeInsets.all(AppSizer().deviceHeight2),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
-                                    height: AppSizer().deviceHeight3,
                                     width: AppSizer().deviceWidth26,
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
@@ -59,10 +57,16 @@ class AssignmentPage extends StatelessWidget {
                                           fontSize: AppSizer().deviceSp16),
                                     ),
                                   ),
+                                  SizedBox(
+                                    height: AppSizer().deviceHeight1,
+                                  ),
                                   Text(
                                     'Surface Area and Volume',
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: AppSizer().deviceHeight1,
                                   ),
                                   Flex(
                                     direction: Axis.horizontal,
@@ -99,6 +103,9 @@ class AssignmentPage extends StatelessWidget {
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
+                                  ),
+                                  SizedBox(
+                                    height: AppSizer().deviceHeight1,
                                   ),
                                   CustomButton(
                                       text: 'To Be Submitted',

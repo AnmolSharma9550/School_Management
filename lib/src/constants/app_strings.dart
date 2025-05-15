@@ -9,6 +9,6 @@ class AppStrings {
 
   static const String notification = 'Notification';
 
-  static const String attendanceDetails = 'Attendance Details';
+  static const String attendanceDetails = 'Attendance ';
   static const String scoreDetails = 'Score Details';
 }

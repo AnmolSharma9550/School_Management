@@ -34,13 +34,10 @@ class ProfileDetailsPage extends StatelessWidget {
         backgroundColor: AppColors.appPrimaryColor,
         iconTheme: IconThemeData(color: AppColors.appWhite),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Expanded(
-            child: CustomFrontContainer(
-              height: AppSizer().deviceHeight100,
-              width: AppSizer().deviceWidth100,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CustomFrontContainer(
               child: Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: AppSizer().deviceWidth6,
@@ -49,7 +46,7 @@ class ProfileDetailsPage extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 60,
-                      backgroundColor: AppColors.appBackgroundColor,
+                      backgroundColor: AppColors.lightBlue,
                     ),
                     SizedBox(height: AppSizer().deviceHeight1),
                     Text(
@@ -67,47 +64,65 @@ class ProfileDetailsPage extends StatelessWidget {
                     SizedBox(
                       height: AppSizer().deviceHeight2,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          height: AppSizer().deviceHeight12,
-                          width: AppSizer().deviceWidth36,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.appBlack),
-                            borderRadius: BorderRadius.circular(13),
+                    Padding(
+                      padding: EdgeInsets.all(AppSizer().deviceHeight1),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            // height: AppSizer().deviceHeight12,
+                            width: AppSizer().deviceWidth36,
+                            decoration: BoxDecoration(
+                              color: AppColors.lightBlue,
+                              border: Border.all(color: AppColors.appBlack),
+                              borderRadius: BorderRadius.circular(13),
+                            ),
+                            child: Center(
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.all(AppSizer().deviceHeight4),
+                                child: Text(AppStrings.attendanceDetails),
+                              ),
+                            ),
                           ),
-                          child: Center(
-                            child: Text(AppStrings.attendanceDetails),
+                          Container(
+                            // height: AppSizer().deviceHeight12,
+                            // width: AppSizer().deviceWidth36,
+                            decoration: BoxDecoration(
+                              color: AppColors.lightBlue,
+                              border: Border.all(color: AppColors.appBlack),
+                              borderRadius: BorderRadius.circular(13),
+                            ),
+                            child: Center(
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.all(AppSizer().deviceHeight4),
+                                child: Text(AppStrings.scoreDetails),
+                              ),
+                            ),
                           ),
-                        ),
-                        Container(
-                          height: AppSizer().deviceHeight12,
-                          width: AppSizer().deviceWidth36,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.appBlack),
-                            borderRadius: BorderRadius.circular(13),
-                          ),
-                          child: Center(
-                            child: Text(AppStrings.scoreDetails),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                    Expanded(
-                      child: ListView.builder(
-                          itemCount: profileList.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.all(AppSizer().deviceHeight1),
-                              child: Container(
-                                height: AppSizer().deviceHeight6,
-                                width: AppSizer().deviceWidth100,
-                                decoration: BoxDecoration(
-                                  border: Border.all(),
-                                  borderRadius: BorderRadius.circular(13),
-                                ),
-                                child: Center(
+                    ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: profileList.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.all(AppSizer().deviceHeight1),
+                            child: Container(
+                              // height: AppSizer().deviceHeight6,
+                              width: AppSizer().deviceWidth100,
+                              decoration: BoxDecoration(
+                                color: AppColors.lightBlue,
+                                border: Border.all(),
+                                borderRadius: BorderRadius.circular(13),
+                              ),
+                              child: Center(
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.all(AppSizer().deviceHeight2),
                                   child: Text(
                                     profileList[index],
                                     style: TextStyle(
@@ -115,15 +130,15 @@ class ProfileDetailsPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                            );
-                          }),
-                    ),
+                            ),
+                          );
+                        }),
                   ],
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

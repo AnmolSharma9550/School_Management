@@ -57,7 +57,6 @@ class TimeTable extends StatelessWidget {
                       return Padding(
                         padding: EdgeInsets.all(AppSizer().deviceHeight2),
                         child: Container(
-                          height: AppSizer().deviceHeight14,
                           decoration: BoxDecoration(
                               border: Border.all(),
                               borderRadius:

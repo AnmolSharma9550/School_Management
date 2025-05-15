@@ -31,7 +31,7 @@ class MyDrawer extends StatelessWidget {
               backgroundColor: AppColors.appBackgroundColor,
               child: Icon(
                 Icons.person,
-                size: 50,
+                size: AppSizer().deviceHeight5,
                 color: AppColors.appWhite,
               ),
             ),
@@ -86,16 +86,18 @@ class MyDrawer extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             vertical: AppSizer().deviceHeight1),
                         child: Container(
-                          height: AppSizer().deviceHeight6,
-                          width: AppSizer().deviceWidth100,
+                          // height: AppSizer().deviceHeight6,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               gradient: LinearGradient(
                                   colors: AppColors.gradientColor)),
-                          child: Center(
-                            child: Text(
-                              itmes[index],
-                              style: TextStyle(color: AppColors.appWhite),
+                          child: Padding(
+                            padding: EdgeInsets.all(AppSizer().deviceHeight2),
+                            child: Center(
+                              child: Text(
+                                itmes[index],
+                                style: TextStyle(color: AppColors.appWhite),
+                              ),
                             ),
                           ),
                         ),

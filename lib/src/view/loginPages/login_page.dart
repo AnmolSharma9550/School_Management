@@ -20,63 +20,51 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: true,
-        body: SafeArea(
-          child: Stack(
-            children: [
-              CustomContainer(),
-              Positioned(
-                top: AppSizer().deviceHeight30,
-                left: 0,
-                right: 0,
-                child: CustomFrontContainer(
-                  height: AppSizer().deviceHeight70,
-                  width: AppSizer().deviceWidth100,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: AppSizer().deviceWidth6),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Hii Student',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: AppSizer().deviceSp22,
-                                fontWeight: FontWeight.w600)),
-                        SizedBox(
-                          height: AppSizer().deviceHeight1,
-                        ),
-                        Text('Sign in to continue',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: AppSizer().deviceSp16,
-                            )),
-                        SizedBox(
-                          height: AppSizer().deviceHeight6,
-                        ),
-                        Text(
-                          'Email :',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: AppSizer().deviceSp16,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(
-                          height: AppSizer().deviceHeight1,
-                        ),
-                        Column(
+        body: Stack(
+          children: [
+            CustomContainer(),
+            SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: SvgPicture.asset(
+                      'assets/images/Group_8037.svg',
+                      height: AppSizer().deviceHeight30,
+                    ),
+                  ),
+                  Positioned(
+                    top: AppSizer().deviceHeight30,
+                    left: 0,
+                    right: 0,
+                    child: CustomFrontContainer(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: AppSizer().deviceWidth6,
+                            vertical: AppSizer().deviceHeight8),
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CustomEmailfield(
-                              controller: controller.emailController,
-                              hintText: 'Enter your email',
-                              perfixIcon: Icons.email,
-                            ),
+                            Text('Hii Student',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: AppSizer().deviceSp22,
+                                    fontWeight: FontWeight.w600)),
                             SizedBox(
                               height: AppSizer().deviceHeight1,
                             ),
+                            Text('Sign in to continue',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: AppSizer().deviceSp16,
+                                )),
+                            SizedBox(
+                              height: AppSizer().deviceHeight6,
+                            ),
                             Text(
-                              'Password :',
+                              'Email :',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: AppSizer().deviceSp16,
@@ -85,52 +73,68 @@ class LoginPage extends StatelessWidget {
                             SizedBox(
                               height: AppSizer().deviceHeight1,
                             ),
-                            CustomPasswordfield(
-                              controller: controller.passwordController,
-                              label: 'Password',
-                              hintText: 'Enter your password',
-                              perfixIcon: Icons.password,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomEmailfield(
+                                  controller: controller.emailController,
+                                  hintText: 'Enter your email',
+                                  perfixIcon: Icons.email,
+                                ),
+                                SizedBox(
+                                  height: AppSizer().deviceHeight1,
+                                ),
+                                Text(
+                                  'Password :',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: AppSizer().deviceSp16,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                SizedBox(
+                                  height: AppSizer().deviceHeight1,
+                                ),
+                                CustomPasswordfield(
+                                  controller: controller.passwordController,
+                                  label: 'Password',
+                                  hintText: 'Enter your password',
+                                  perfixIcon: Icons.password,
+                                ),
+                                SizedBox(
+                                  height: AppSizer().deviceHeight10,
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              height: AppSizer().deviceHeight10,
+                            Obx(
+                              () => CustomButton(
+                                text: 'Sign In',
+                                onPressed: () {
+                                  controller.login();
+                                },
+                                gradient: LinearGradient(
+                                    colors: AppColors.gradientColor),
+                                isLoading: controller.isLoading.value,
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: TextButton(
+                                  onPressed: () {
+                                    Get.toNamed(AppRoutes.dashBoard);
+                                  },
+                                  child: Text(
+                                    'Forget Password?',
+                                  )),
                             ),
                           ],
                         ),
-                        Obx(
-                          () => CustomButton(
-                            text: 'Sign In',
-                            onPressed: () {
-                              controller.login();
-                            },
-                            gradient:
-                                LinearGradient(colors: AppColors.gradientColor),
-                            isLoading: controller.isLoading.value,
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: TextButton(
-                              onPressed: () {
-                                Get.toNamed(AppRoutes.forgotPassword);
-                              },
-                              child: Text(
-                                'Forget Password?',
-                              )),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: SvgPicture.asset(
-                  'assets/images/Group_8037.svg',
-                  height: AppSizer().deviceHeight30,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ));
   }
 }
