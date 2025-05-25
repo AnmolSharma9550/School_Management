@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_management/src/constants/app_colors.dart';
+
 import 'package:school_management/widgets/custom_front_container.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -48,11 +49,13 @@ class _AttendancePageState extends State<AttendancePage> {
             ],
           ),
           elevation: 0,
+          iconTheme: const IconThemeData(
+            color: Colors.white,
+          ),
         ),
       ),
       body: CustomFrontContainer(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               TableCalendar(

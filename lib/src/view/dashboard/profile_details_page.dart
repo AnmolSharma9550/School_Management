@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:school_management/src/constants/app_colors.dart';
 import 'package:school_management/src/constants/app_sizer.dart';
 import 'package:school_management/src/constants/app_strings.dart';
+import 'package:school_management/src/controller/getImage/get_image_controller.dart';
 import 'package:school_management/widgets/custom_front_container.dart';
 
 class ProfileDetailsPage extends StatelessWidget {
@@ -11,6 +14,8 @@ class ProfileDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetImageController controller = Get.put(GetImageController());
+
     final List<String> profileList = [
       'Class 10 - B , Roll No. 02',
       'Father\'s Name : Mohit Joshi',
@@ -44,9 +49,101 @@ class ProfileDetailsPage extends StatelessWidget {
                     vertical: AppSizer().deviceHeight2),
                 child: Column(
                   children: [
-                    CircleAvatar(
-                      radius: 60,
-                      backgroundColor: AppColors.lightBlue,
+                    Obx(
+                      () => GestureDetector(
+                        onTap: () {
+                          Get.bottomSheet(
+                            Container(
+                              height: AppSizer().deviceHeight30,
+                              width: AppSizer().deviceWidth100,
+                              decoration: BoxDecoration(
+                                color: AppColors.appWhite,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      controller.getImageFromCamera();
+                                      Get.back();
+                                    },
+                                    child: Container(
+                                        height: AppSizer().deviceHeight20,
+                                        width: AppSizer().deviceWidth30,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.camera_alt,
+                                              size: AppSizer().deviceHeight5,
+                                            ),
+                                            SizedBox(
+                                              height: AppSizer().deviceHeight1,
+                                            ),
+                                            Text(
+                                              'Camera',
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      AppSizer().deviceSp14),
+                                            ),
+                                          ],
+                                        )),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      controller.getImageFromGallery();
+                                      Get.back();
+                                    },
+                                    child: Container(
+                                      height: AppSizer().deviceHeight20,
+                                      width: AppSizer().deviceWidth30,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.photo,
+                                            size: AppSizer().deviceHeight5,
+                                          ),
+                                          SizedBox(
+                                            height: AppSizer().deviceHeight1,
+                                          ),
+                                          Text(
+                                            'Gallery',
+                                            style: TextStyle(
+                                                fontSize:
+                                                    AppSizer().deviceSp14),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                        child: CircleAvatar(
+                          radius: AppSizer().deviceHeight8,
+                          backgroundColor: AppColors.lightBlue,
+                          backgroundImage: controller.imagePath.isNotEmpty
+                              ? FileImage(File(controller.imagePath.value))
+                              : null,
+                        ),
+                      ),
                     ),
                     SizedBox(height: AppSizer().deviceHeight1),
                     Text(
