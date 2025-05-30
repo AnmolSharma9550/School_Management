@@ -76,10 +76,19 @@ class LoginPage extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                CustomEmailfield(
-                                  controller: controller.emailController,
-                                  hintText: 'Enter your email',
-                                  perfixIcon: Icons.email,
+                                Obx(
+                                  () => CustomEmailfield(
+                                    onChanged: (value) {
+                                      controller.validateEmail(value);
+                                    },
+                                    controller: controller.emailController,
+                                    hintText: 'Enter your email',
+                                    perfixIcon: Icons.email,
+                                    errorText:
+                                        controller.emailError.value.isNotEmpty
+                                            ? controller.emailError.value
+                                            : null,
+                                  ),
                                 ),
                                 SizedBox(
                                   height: AppSizer().deviceHeight1,
@@ -94,11 +103,29 @@ class LoginPage extends StatelessWidget {
                                 SizedBox(
                                   height: AppSizer().deviceHeight1,
                                 ),
-                                CustomPasswordfield(
-                                  controller: controller.passwordController,
-                                  label: 'Password',
-                                  hintText: 'Enter your password',
-                                  perfixIcon: Icons.password,
+                                Obx(
+                                  () => CustomPasswordfield(
+                                    onChanged: (password) =>
+                                        controller.validatePassword(password),
+                                    controller: controller.passwordController,
+                                    label: 'Password',
+                                    hintText: 'Enter your password',
+                                    perfixIcon: Icons.password,
+                                    errorText: controller
+                                            .passwordError.value.isNotEmpty
+                                        ? controller.passwordError.value
+                                        : null,
+                                    obscureText:
+                                        controller.isPasswordVisible.value,
+                                    suffixIcon: IconButton(
+                                        onPressed: () {
+                                          controller.isPasswordVisible.toggle();
+                                        },
+                                        icon: Icon(
+                                            controller.isPasswordVisible.value
+                                                ? Icons.visibility
+                                                : Icons.visibility_off)),
+                                  ),
                                 ),
                                 SizedBox(
                                   height: AppSizer().deviceHeight10,
@@ -120,7 +147,7 @@ class LoginPage extends StatelessWidget {
                               alignment: Alignment.bottomRight,
                               child: TextButton(
                                   onPressed: () {
-                                    Get.toNamed(AppRoutes.dashBoard);
+                                    Get.toNamed(AppRoutes.forgotPassword);
                                   },
                                   child: Text(
                                     'Forget Password?',

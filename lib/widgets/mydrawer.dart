@@ -20,7 +20,7 @@ class MyDrawer extends StatelessWidget {
       'Events',
     ];
     return Drawer(
-      backgroundColor: Color(0x802855AE),
+      backgroundColor: AppColors.appPrimaryColor,
       child: Padding(
         padding: EdgeInsets.all(AppSizer().deviceHeight2),
         child: Column(
