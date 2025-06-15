@@ -65,8 +65,8 @@ class AskdoubtPage extends StatelessWidget {
                           hint: Text('Choose a teacher'),
                           items: teacherList
                               .map((teacher) => DropdownMenuItem(
-                                    child: Text(teacher),
                                     value: teacher,
+                                    child: Text(teacher),
                                   ))
                               .toList(),
                           onChanged: (value) {
@@ -93,8 +93,8 @@ class AskdoubtPage extends StatelessWidget {
                           hint: Text('Choose a Subject'),
                           items: subjectList
                               .map((subject) => DropdownMenuItem(
-                                    child: Text(subject),
                                     value: subject,
+                                    child: Text(subject),
                                   ))
                               .toList(),
                           onChanged: (value) {

@@ -9,7 +9,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SplashController splashController = Get.put(SplashController());
+    final SplashController _ = Get.put(SplashController());
     return Scaffold(
       body: Stack(
         children: [
